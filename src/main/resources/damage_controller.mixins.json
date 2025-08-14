@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.chen1335.damageController.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CommonHooksMixin",
+    "DamageContainerMixin",
+    "DamageEventMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
