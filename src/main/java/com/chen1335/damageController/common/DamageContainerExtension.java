@@ -2,13 +2,16 @@ package com.chen1335.damageController.common;
 
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DamageContainerExtension {
     private final DamageContainer damageContainer;
     private float addValue = 0;
 
     private float multipliedBase = 1;
 
-    private float multipliedTotal = 1;
+    private final List<Float> multipliedTotal = new ArrayList<>();
 
     private float finalDamageAdd = 0;
 
@@ -18,11 +21,14 @@ public class DamageContainerExtension {
 
     public void solveFinalDamage() {
         float damage = damageContainer.getNewDamage() + addValue;
-        damage = damage * multipliedBase * multipliedTotal;
+        damage = damage * multipliedBase;
+        for (Float v : multipliedTotal) {
+            damage = damage * v;
+        }
         damageContainer.setNewDamage(damage + finalDamageAdd);
         addValue = 0;
         multipliedBase = 1;
-        multipliedTotal = 1;
+        multipliedTotal.clear();
         finalDamageAdd = 0;
     }
 
@@ -35,7 +41,7 @@ public class DamageContainerExtension {
     }
 
     public void addMultipliedTotal(float value) {
-        multipliedTotal += value;
+        multipliedTotal.add(value);
     }
 
     public void addFinalDamage(float value) {

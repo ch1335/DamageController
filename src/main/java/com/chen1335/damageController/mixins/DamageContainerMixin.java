@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(DamageContainer.class)
 public class DamageContainerMixin implements IDamageContainerExtensionGetter {
     @Unique
-    DamageContainerExtension dc$extension = new DamageContainerExtension((DamageContainer) (Object) this);
+    DamageContainerExtension dc$extension = new DamageContainerExtension(DamageContainer.class.cast(this));
 
     @Unique
-    public DamageContainerExtension dc$getExtension(){
+    public DamageContainerExtension dc$getExtension() {
         return dc$extension;
     }
 }

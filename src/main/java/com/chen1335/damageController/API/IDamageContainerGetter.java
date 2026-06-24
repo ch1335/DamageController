@@ -4,9 +4,9 @@ import net.neoforged.neoforge.common.damagesource.DamageContainer;
 
 
 public interface IDamageContainerGetter {
-    public DamageContainer getContainer();
+    DamageContainer getContainer();
 
-    static IDamageContainerGetter of(Object o) {
-        return (IDamageContainerGetter) o;
+    static IDamageContainerGetter of(DamageContainer damageContainer) {
+        return () -> damageContainer;
     }
 }
